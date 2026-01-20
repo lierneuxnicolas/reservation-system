@@ -1,18 +1,6 @@
-<!doctype html>
-<meta charset="utf-8">
-<h1>{{ object.title }}</h1>
+<h1>{{ show.title }}</h1>
+<p>{{ show.description }}</p>
+<p>Prix : {{ show.price }} €</p>
+<p>Réservable : {{ show.bookable }}</p>
 
-<p>{{ object.description }}</p>
-<p><b>Prix :</b> {{ object.price }} €</p>
-<p><b>Réservable :</b> {{ object.bookable }}</p>
-
-<h3>Représentations :</h3>
-<ul>
-  {% for r in object.representations.all %}
-    <li>{{ r.start_at|date:"d/m/Y H:i" }}</li>
-  {% empty %}
-    <li>Aucune représentation prévue.</li>
-  {% endfor %}
-</ul>
-
-<a href="/">← Retour au catalogue</a>
+<p><a href="{% url 'show_list' %}">Retour</a></p>

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Show, Location, Representation
+from .models import Artist, Show
 
+admin.site.register(Artist)
 admin.site.register(Show)
-admin.site.register(Location)
-admin.site.register(Representation)

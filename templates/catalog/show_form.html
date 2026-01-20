@@ -1,0 +1,9 @@
+<h1>Ajouter / Modifier un show</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Enregistrer</button>
+</form>
+
+<p><a href="{% url 'show_list' %}">Retour</a></p>

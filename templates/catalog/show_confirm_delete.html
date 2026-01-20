@@ -1,0 +1,8 @@
+<h1>Supprimer "{{ object.title }}" ?</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Oui, supprimer</button>
+</form>
+
+<p><a href="{% url 'show_list' %}">Non, retour</a></p>

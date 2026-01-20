@@ -1,8 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Show
-from django.shortcuts import render, get_object_or_404
-from .models import Artist
+
 
 class ShowListView(ListView):
     model = Show
@@ -40,18 +39,3 @@ class ShowDeleteView(DeleteView):
     slug_field = "slug"
     slug_url_kwarg = "slug"
     success_url = reverse_lazy("show_list")
-
-
-class ShowCreateView(CreateView):
-    model = Show
-    fields = ["title", "description", "price", "bookable"]
-    template_name = "catalog/show_form.html"
-    success_url = reverse_lazy("show_list")
-
-def artist_index(request):
-    artists = Artist.objects.all().order_by("lastname", "firstname")
-    return render(request, "artist/index.html", {"artists": artists})
-
-def artist_show(request, pk):
-    artist = get_object_or_404(Artist, pk=pk)
-    return render(request, "artist/show.html", {"artist": artist})

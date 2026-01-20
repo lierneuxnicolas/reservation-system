@@ -1,0 +1,13 @@
+<h1>Liste des artistes</h1>
+
+<ul>
+  {% for artist in artists %}
+    <li>
+      <a href="{% url 'artist_show' artist.pk %}">
+        {{ artist.firstname }} {{ artist.lastname }}
+      </a>
+    </li>
+  {% empty %}
+    <li>Aucun artiste.</li>
+  {% endfor %}
+</ul>
