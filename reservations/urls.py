@@ -1,6 +1,5 @@
-"""URL configuration for reservations project."""
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
 
 urlpatterns = [
     path('catalogue/', include('catalogue.urls')),

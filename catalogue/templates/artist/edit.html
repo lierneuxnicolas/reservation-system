@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h1>Modifier l'artiste</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="_method" value="PUT">
+    
+    {{ form.as_p }}
+    
+    <button type="submit">Enregistrer</button>
+    <a href="{% url 'catalogue:artist-show' artist.id %}">Annuler</a>
+</form>
+{% endblock %}
