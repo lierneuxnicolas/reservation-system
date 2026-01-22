@@ -9,5 +9,6 @@ urlpatterns = [
     path('artist/', views.artist.index, name='artist-index'),
     path('artist/edit/<int:artist_id>', views.artist.edit, name='artist-edit'),
     path('artist/create', views.artist.create, name='artist-create'),
+    path('artist/delete/<int:artist_id>', views.artist.delete, name='artist-delete'),
     path('artist/<int:artist_id>', views.artist.show, name='artist-show'),
 ]
