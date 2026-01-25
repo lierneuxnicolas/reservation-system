@@ -1,21 +1,30 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Projet réservations - {% block title %}Bienvenue{% endblock %}</title>
+<meta charset="utf-8">
+<title>Projet réservations - {% block title %}Bienvenue{% endblock %}</title>
 </head>
 <body>
-  <div class="container">
-    <div id="notification">
-      {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    </div>
-    {% block content %}{% endblock %}
-  </div>
+<div class="container">
+<header>
+<div style="float:right">
+    <p>Vous n'êtes pas connecté.</p>
+    <p><a href="{% url 'login' %}">Se connecter</a></p>
+</div>
+</header>
+<main>
+<div id="notification">
+{% if messages %}
+<ul class="messages">
+{% for message in messages %}
+<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</div>
+{% block content %}{% endblock %}
+</main>
+<footer>&copy; Projet Réservations - EPFC / ICC</footer>
+</div>
 </body>
 </html>
