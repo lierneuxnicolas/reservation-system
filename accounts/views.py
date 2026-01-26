@@ -1,9 +1,13 @@
+
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib import messages
 from .forms import UserSignUpForm
+
+from django.contrib.auth.decorators import login_required
+from catalogue.models import UserMeta
 
 class UserSignUpView(UserPassesTestMixin, CreateView):
     form_class = UserSignUpForm
@@ -17,3 +21,15 @@ class UserSignUpView(UserPassesTestMixin, CreateView):
     def handle_no_permission(self):
         messages.error(self.request, "Vous êtes déjà inscrit!")
         return redirect('home')
+
+@login_required
+def profile(request):
+    languages = {
+        "fr": "Français",
+        "en": "English",
+        "nl": "Nederlands",
+    }
+    usermeta, created = UserMeta.objects.get_or_create(user=request.user, defaults={"langue": "fr"})
+    return render(request, 'user/profile.html', {
+        "user_language" : languages.get(usermeta.langue, "Français"),
+    })
