@@ -27,6 +27,23 @@ class UserUpdateView(UserPassesTestMixin, UpdateView):
         return redirect("accounts:user-profile")
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+@login_required
+def delete(request, pk):
+    if request.method == 'POST':
+        method = request.POST.get('_method', '').upper()
+        if method == 'DELETE':
+            if request.user and request.user.id == pk:
+                user = User.objects.get(id=request.user.id)
+                user.delete()
+                messages.success(request, "Utilisateur supprimé avec succès.")
+                logout(request)
+            else:
+                messages.error(request,
+                "Suppression d'un autre compte interdite!")
+            return redirect('home')
+        messages.error(request, "Suppression interdite (méthode incorrecte)!")
+        return redirect('home')
 from catalogue.models import UserMeta
 
 class UserSignUpView(UserPassesTestMixin, CreateView):

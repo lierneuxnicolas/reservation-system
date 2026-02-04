@@ -48,16 +48,14 @@ class UserSignUpForm(UserCreationForm):
         user = super(UserSignUpForm, self).save(commit=False)
         user.save()
 
-        #Ajout de l'utilisateur au groupe MEMBER => rôle de membre
+        # Ajout de l'utilisateur au groupe MEMBER => rôle de membre
         memberGroup = Group.objects.get(name='MEMBER')
         memberGroup.user_set.add(user)
 
+        # Met à jour la langue dans UserMeta (créé par le signal)
         if self.cleaned_data['langue']:
-            user_meta = UserMeta(**{
-                'langue': self.cleaned_data['langue'],
-            })
-            #Mise à jour de la relation one-to-one
-            user_meta.user = user
+            user_meta, _ = UserMeta.objects.get_or_create(user=user)
+            user_meta.langue = self.cleaned_data['langue']
             user_meta.save()
 
         return user
