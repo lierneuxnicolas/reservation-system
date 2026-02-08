@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
 from django.http import Http404
 from django.contrib import messages
 from catalogue.models import Artist
@@ -27,6 +28,8 @@ def show(request, artist_id):
 
 
 def create(request):
+    if not request.user.is_authenticated or not request.user.has_perm('add_artist'):
+        return redirect(f"{settings.LOGIN_URL}?next={request.path}")
     form = ArtistForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
