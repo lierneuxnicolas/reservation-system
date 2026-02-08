@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import Http404
 from django.contrib import messages
@@ -43,6 +44,7 @@ def create(request):
     })
 
 
+@login_required
 def edit(request, artist_id):
     # fetch the object related to passed id
     artist = Artist.objects.get(id=artist_id)
