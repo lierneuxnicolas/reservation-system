@@ -1,5 +1,6 @@
 📌 Reservation System
-🔹 Description
+
+Description
 
 This project is a web application built with Django (Python).
 It allows users to manage accounts, browse a catalogue, and handle reservations.
