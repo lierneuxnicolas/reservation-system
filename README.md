@@ -1,10 +1,7 @@
-📌 Reservation System
-
-Description
+📌 Description
 
 This project is a web application built with Django (Python).
 It allows users to manage accounts, browse a catalogue, and handle reservations.
-
 It was developed as part of a learning project to understand backend development and web application structure.
 
 🛠️ Technologies
@@ -12,6 +9,7 @@ Backend: Django (Python)
 Database: SQLite
 Frontend: HTML (Django templates)
 Tools: Git, GitHub, VS Code
+
 ⚙️ Installation
 Prerequisites
 Python 3.10+
@@ -24,8 +22,8 @@ python -m venv .venv
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-🚀 Usage
 
+🚀 Usage
 Open your browser and go to:
 
 http://127.0.0.1:8000/
@@ -33,8 +31,8 @@ http://127.0.0.1:8000/
 python manage.py createsuperuser
 
 Then access:
-
 http://127.0.0.1:8000/admin
+
 ✅ Summary
 Django-based web application
 User management + catalogue + reservations
